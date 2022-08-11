@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "221122740751",
+    "project_id": "smkonlineservice-f00bb",
+    "storage_bucket": "smkonlineservice-f00bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:221122740751:android:cfc3fd7d63672b7c11197a",
+        "android_client_info": {
+          "package_name": "com.smk_online_service"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "221122740751-8bugu53mvsol8bnbtsmiiqd5khra3oun.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWmOZ6BgaFX93a5hoi-XZ87klehS0CRjg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "221122740751-8bugu53mvsol8bnbtsmiiqd5khra3oun.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
