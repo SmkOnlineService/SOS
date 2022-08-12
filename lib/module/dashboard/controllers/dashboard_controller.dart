@@ -9,6 +9,12 @@ class DashboardController extends GetxController {
 
   User? user = FirebaseAuth.instance.currentUser;
 
+  RxInt tabIndex = 0.obs;
+
+  void changeTabIndex(int index) {
+    tabIndex.value = index;
+  }
+
   Future<void> signOut() async {
     isSigningOut.value = true;
     await Authentication.signOut();

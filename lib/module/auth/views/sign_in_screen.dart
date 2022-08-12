@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:sos/util/authentication.dart';
 import 'package:sos/util/colours.dart';
 import 'package:sos/widget/google_sign_in_button.dart';
