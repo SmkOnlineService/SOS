@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sos/util/colours.dart';
 
@@ -9,14 +8,25 @@ class SubmenuTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Icon(
-          Icons.check_circle,
-          color: Colours.primaryColor,
-        ),
-        Text(menuTitle)
-      ],
+    return Container(
+      color: Colors.amber,
+      height: 10,
+      width: 10,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Padding(
+            padding: EdgeInsets.fromLTRB(8.0, 12.0, 8.0, 15.0),
+            child: Icon(
+              Icons.check_circle,
+              color: Colours.primaryColor,
+              size: 30,
+            ),
+          ),
+          Text(menuTitle)
+        ],
+      ),
     );
   }
 }
