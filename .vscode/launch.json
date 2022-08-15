@@ -7,19 +7,11 @@
         {
             "name": "SOS",
             "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "SOS (profile mode)",
-            "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "args": [
+                "--flavor",
+                "staging"
+            ]
         },
-        {
-            "name": "SOS (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
-        }
     ]
 }
