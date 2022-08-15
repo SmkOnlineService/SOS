@@ -1,8 +1,9 @@
+import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sos/module/auth/controllers/sign_in_controllers.dart';
 import 'package:sos/util/authentication.dart';
-import 'package:sos/util/route_name.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   const GoogleSignInButton({Key? key}) : super(key: key);
@@ -13,6 +14,9 @@ class GoogleSignInButton extends StatefulWidget {
 
 class _GoogleSignInButtonState extends State<GoogleSignInButton> {
   bool _isSigningIn = false;
+  final _controller = Get.put(SignInControllers());
+
+  EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +43,15 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                   });
 
                   if (user != null) {
-                    Get.toNamed(RouteName.dashboard);
+                    String token = "";
+
+                    await user.getIdToken().then((value) {
+                      prefs.setString('accessToken', value);
+                      token = value;
+                    });
+
+                    _controller.logRegUser(user.displayName ?? "",
+                        user.email ?? "", user.photoURL ?? "", token);
                   }
                 },
                 child: Padding(

@@ -1,19 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:sos/util/route_name.dart';
 import 'package:sos/util/utility.dart';
 
 class Authentication {
   static Future<FirebaseApp> initializeFirebase() async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
-
-    User? user = FirebaseAuth.instance.currentUser;
-
-    if (user != null) {
-      Get.toNamed(RouteName.dashboard);
-    }
 
     return firebaseApp;
   }
