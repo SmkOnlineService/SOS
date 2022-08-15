@@ -18,17 +18,14 @@ void main() async {
   String initialRoute = RouteName.signInPage;
 
   EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
-  String? isUserSignedIn;
 
-  prefs.getString('accessToken').then((value) {
-    isUserSignedIn = value;
+  await prefs.getString('accessToken').then((value) {
+    if (value != '') {
+      initialRoute = RouteName.dashboard;
+    } else {
+      initialRoute = RouteName.signInPage;
+    }
   });
-
-  if (isUserSignedIn != null && isUserSignedIn != '') {
-    initialRoute = RouteName.dashboard;
-  } else {
-    initialRoute = RouteName.signInPage;
-  }
 
   SystemChrome.setPreferredOrientations(
           [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
@@ -66,7 +63,7 @@ class SosApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SMK Online Service',      
+      title: 'SMK Online Service',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
