@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:sos/util/authentication.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:sos/module/auth/controllers/sign_in_controllers.dart';
 import 'package:sos/util/colours.dart';
 import 'package:sos/widget/google_sign_in_button.dart';
 
 class SignInScreen extends StatelessWidget {
-  const SignInScreen({Key? key}) : super(key: key);
+  SignInScreen({Key? key}) : super(key: key);
+
+  final _controller = Get.put(SignInControllers());
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class SignInScreen extends StatelessWidget {
               ),
               Center(
                 child: FutureBuilder(
-                  future: Authentication.initializeFirebase(),
+                  future: _controller.initializeFirebase(),
                   builder: (context, snapshot) {
                   if (snapshot.hasError) {
                     return const Text('Error initializing Firebase');

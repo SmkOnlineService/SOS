@@ -1,4 +1,6 @@
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:sos/api/dio_service_exception.dart';
 import 'package:sos/module/auth/domain/services/auth_repository.dart';
@@ -8,6 +10,14 @@ import 'package:sos/util/utility.dart';
 class SignInControllers extends GetxController {
   
   final AuthRepository _repository = AuthRepository();
+
+  Future<FirebaseApp> initializeFirebase() async {
+    FirebaseApp firebaseApp = await Firebase.initializeApp();
+    
+    return firebaseApp;
+  }
+
+  Future<User?> googleSignIn() async => await _repository.signInWithGoogle();
 
   logRegUser(
     String name,

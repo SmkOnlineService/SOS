@@ -38,6 +38,6 @@ class RoutePage {
     
     GetPage(
       name: RouteName.signInPage, 
-      page: () => const SignInScreen()),
+      page: () => SignInScreen()),
   ];
 }

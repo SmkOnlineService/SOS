@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos/module/auth/controllers/sign_in_controllers.dart';
-import 'package:sos/util/authentication.dart';
 
 class GoogleSignInButton extends StatefulWidget {
   const GoogleSignInButton({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class _GoogleSignInButtonState extends State<GoogleSignInButton> {
                     _isSigningIn = true;
                   });
 
-                  User? user = await Authentication.signInWithGoogle();
+                  User? user = await _controller.googleSignIn();
 
                   setState(() {
                     _isSigningIn = false;
