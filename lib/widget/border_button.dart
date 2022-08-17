@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sos/util/colours.dart';
 
-
 class BorderButton extends StatelessWidget {
   final String text;
   double size;
@@ -24,8 +23,7 @@ class BorderButton extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20.0),
                       side: BorderSide(color: colour)))),
           child: Text(text,
-              style: TextStyle(
-                  color: colour, fontWeight: FontWeight.w700))),
+              style: TextStyle(color: colour, fontWeight: FontWeight.w700))),
     );
   }
 }

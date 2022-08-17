@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:sos/module/account/controllers/account_page_controller.dart';
 import 'package:sos/module/account/views/account_page.dart';
 import 'package:sos/module/activity/views/activity_page.dart';
 import 'package:sos/module/dashboard/views/dashboard.dart';
@@ -25,7 +26,8 @@ class RoutePage {
       page: () => ActivityPage(),),
     GetPage(
       name: RouteName.accountPage, 
-      page: () => AccountPage(),),
+      page: () => AccountPage(),
+      binding: BindingsBuilder(() => Get.put<AccountPageController>(AccountPageController()))),
     GetPage(
       name: RouteName.inboxPage, 
       page: () => InboxPage(),),
@@ -36,6 +38,6 @@ class RoutePage {
     
     GetPage(
       name: RouteName.signInPage, 
-      page: () => SignInScreen()),
+      page: () => const SignInScreen()),
   ];
 }
