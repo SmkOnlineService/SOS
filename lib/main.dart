@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:alice/alice.dart';
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -7,13 +8,28 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:sos/util/app_config.dart';
+import 'package:sos/util/notification_helper.dart';
 import 'package:sos/util/route_name.dart';
 import 'package:sos/util/route_page.dart';
+
+final alice = Alice(
+  showNotification: true,
+  showInspectorOnShake: true,
+  darkTheme: false,
+  maxCallsCount: 1000,
+);
+
+void runHttpInspector(final response) {
+  alice.showNotification;
+  alice.showInspectorOnShake;
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+
+  NotificationHelper().init();
 
   String initialRoute = RouteName.signInPage;
 
@@ -63,6 +79,7 @@ class SosApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: alice.getNavigatorKey(),
       title: 'SMK Online Service',
       theme: ThemeData(
         primarySwatch: Colors.blue,

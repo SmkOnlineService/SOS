@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:sos/main.dart';
 
 class DioInstance {
   Dio init() {
@@ -9,6 +10,7 @@ class DioInstance {
       )
     );
     _dio.interceptors.add(DioInterceptors());
+    _dio.interceptors.add(alice.getDioInterceptor());
 
     return _dio;
   }
