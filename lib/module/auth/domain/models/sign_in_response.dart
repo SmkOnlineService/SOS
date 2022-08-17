@@ -20,7 +20,7 @@ class UserId {
   UserId({required this.idUser});
 
   factory UserId.fromJson(Map<String, dynamic> json) {
-    return UserId(idUser: json['id_user']);
+    return UserId(idUser: json['id_user'].toString());
   }
 
   Map<String, dynamic> toJson() {
