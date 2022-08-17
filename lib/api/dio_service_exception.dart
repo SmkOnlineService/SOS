@@ -72,7 +72,7 @@ Future<DioServiceException> handleDioError(DioError error) async {
           } else {
             return DioServiceException(
               code: error.response?.statusCode ?? 500,
-              message: error.response?.data['message'] ?? '',
+              message: error.response?.data['error'] ?? '',
               errorCode: 100,
             );
           }

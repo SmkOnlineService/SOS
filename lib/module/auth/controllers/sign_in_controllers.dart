@@ -1,3 +1,4 @@
+import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:get/get.dart';
 import 'package:sos/api/dio_service_exception.dart';
 import 'package:sos/module/auth/domain/services/auth_repository.dart';
@@ -22,8 +23,13 @@ class SignInControllers extends GetxController {
       'token': accessToken,
     };
 
-    _repository.logRegUser(params).then((result) {
-      Get.offNamed(RouteName.dashboard);
+    _repository.logRegUser(params).then((value) {
+      EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
+
+      if (value.status) {
+        prefs.setString("idUser", value.result?.idUser ?? "-");
+        Get.offNamed(RouteName.dashboard);
+      }
     }, onError: (err) {
       if (err is DioServiceException) {
         Utility.showSnackbar(title: "Error", message: err.message);
