@@ -27,7 +27,7 @@ class AccountPageController extends GetxController {
       UserData user = data.result![0];
 
       photoUrl.value = user.photo;
-      name.value = user.name;
+      name.value = user.fullname ?? "-";
       phoneNumber.value = user.phone ?? "-";
       email.value = user.email;
     }, onError: (err) {

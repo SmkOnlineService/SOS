@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:sos/module/account/controllers/account_page_controller.dart';
+import 'package:sos/module/account/controllers/edit_account_controller.dart';
 import 'package:sos/module/account/views/account_page.dart';
+import 'package:sos/module/account/views/edit_account_page.dart';
 import 'package:sos/module/activity/views/activity_page.dart';
 import 'package:sos/module/dashboard/views/dashboard.dart';
 import 'package:sos/module/auth/views/sign_in_screen.dart';
@@ -35,6 +37,10 @@ class RoutePage {
       name: RouteName.paymentPage, 
       page: () => PaymentPage(),),
 
+    GetPage(
+      name: RouteName.editAccountPage, 
+      page: () => EditAccountPage(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => EditAccountController()))),
     
     GetPage(
       name: RouteName.signInPage, 

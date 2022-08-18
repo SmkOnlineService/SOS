@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos/module/account/controllers/account_page_controller.dart';
+import 'package:sos/util/route_name.dart';
 import 'package:sos/util/utility.dart';
 import 'package:sos/widget/border_button.dart';
 import 'package:sos/widget/filled_button.dart';
@@ -29,11 +30,17 @@ class AccountPage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Text("Informasi Akun"),
-                Text(
-                  "Edit",
-                  style: TextStyle(color: Colors.blue),
+              children: [
+                const Text("Informasi Akun"),
+                InkWell(
+                  onTap: () => Get.toNamed(RouteName.editAccountPage, arguments: {
+                    "fullname": _controller.name.value,
+                    "phoneNumber": _controller.phoneNumber.value
+                  }),
+                  child: const Text(
+                    "Edit",
+                    style: TextStyle(color: Colors.blue),
+                  ),
                 )
               ],
             ),

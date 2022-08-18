@@ -7,6 +7,8 @@ class RouteName {
   static String inboxPage = '/inboxPage';
   static String paymentPage = '/paymentPage';
 
+  static String editAccountPage = '/editAccountPage';
+
   //Auth
   static String signInPage = '/signInPage';
 }
