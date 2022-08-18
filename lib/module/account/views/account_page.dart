@@ -109,7 +109,7 @@ class AccountPage extends StatelessWidget {
                       textAlign: TextAlign.center,
                     ),
                     "Hapus Akun",
-                    () {},
+                    () => _controller.deleteAccount(),
                     const TextStyle(color: Colors.red)),
                 colour: Colors.red,
                 size: 100,

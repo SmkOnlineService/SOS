@@ -14,17 +14,15 @@ class UserRepository implements UserRepositoryImpl {
 
   @override
   Future<UserResponse> getUserData() async {
-    String? idUser;
+    String idUser = "";
 
     await prefs.getString('idUser').then((value) {
       idUser = value;
     });
 
-    Map<String, dynamic> queryParam = {'id_user': idUser};
-
     try {
       final response = await _client.get(Endpoints.user,
-          queryParameters: queryParam,
+          queryParameters: {'id_user': idUser},
           options: Options(
               headers: {"requiresToken": true},
               contentType: "application/x-www-form-urlencoded"));
@@ -41,6 +39,22 @@ class UserRepository implements UserRepositoryImpl {
     try {
       final response = await _client.put(Endpoints.user,
           data: data,
+          options: Options(
+              headers: {"requiresToken": true},
+              contentType: "application/x-www-form-urlencoded"));
+
+      runHttpInspector(response.data);
+      return DefaultResponse.fromJson(response.data);
+    } on DioError catch (err) {
+      throw await handleDioError(err);
+    }
+  }
+
+  @override
+  Future<DefaultResponse> deleteAccount() async {
+    try {
+      final response = await _client.delete(Endpoints.user,
+          data: {'id_user': await prefs.getString('idUser')},
           options: Options(
               headers: {"requiresToken": true},
               contentType: "application/x-www-form-urlencoded"));

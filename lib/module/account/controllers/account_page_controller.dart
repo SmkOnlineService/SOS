@@ -10,6 +10,7 @@ import 'package:sos/util/utility.dart';
 
 class AccountPageController extends GetxController {
   final UserRepository _repository = UserRepository();
+  EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
 
   RxString photoUrl = "".obs;
   RxString name = "".obs;
@@ -37,9 +38,18 @@ class AccountPageController extends GetxController {
     });
   }
 
-  Future<void> signOut() async {
-    EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
+  Future<void> deleteAccount() async {
+    _repository.deleteAccount().then((value) {
+      prefs.clear();
+      Get.offAllNamed(RouteName.signInPage);
+      Utility.showSnackbar(title: "Sukses", message: "Berhasil hapus akun");
+    }, onError: (err) {
+      Utility.showSnackbar(
+          title: "Error", message: "Kesalahan saat menghapus akun. Coba lagi");
+    });
+  }
 
+  Future<void> signOut() async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     prefs.clear().then((success) async {
@@ -54,7 +64,7 @@ class AccountPageController extends GetxController {
         }
       } else {
         Utility.showSnackbar(
-              title: "Error", message: "Error signing out. Try again.");
+            title: "Error", message: "Error signing out. Try again.");
       }
     });
   }

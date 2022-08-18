@@ -33,11 +33,11 @@ class SignInControllers extends GetxController {
       'token': accessToken,
     };
 
-    _repository.logRegUser(params).then((value) {
+    _repository.logRegUser(params).then((value) async {
       EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
 
       if (value.status) {
-        prefs.setString("idUser", value.result?.idUser ?? "-");
+        await prefs.setString("idUser", value.result?.idUser ?? "-");
         Get.offNamed(RouteName.dashboard);
       }
     }, onError: (err) {

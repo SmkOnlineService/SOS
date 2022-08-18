@@ -19,17 +19,22 @@ class DioInstance {
 
 class DioInterceptors extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  void onRequest(RequestOptions options, RequestInterceptorHandler handler) async {
+
+    String token = "";
 
     if (options.headers.containsKey("requiresToken")) {
       options.headers.remove("requiresToken");
 
       EncryptedSharedPreferences prefs = EncryptedSharedPreferences();
-      prefs.getString("accessToken").then((data) {
-        options.headers.addAll({
-          "access_token": data
-        });
+
+      await prefs.getString("accessToken").then((data) {
+        token = data;
       });
+
+      options.headers.addAll({
+          "access_token": token
+        });
     }
 
     super.onRequest(options, handler);
