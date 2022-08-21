@@ -46,7 +46,9 @@ class EditAccountPage extends GetView<EditAccountController> {
           : FilledButton(
             "Simpan",
             () {
-              controller.upsertAccountData();
+              if (controller.editAccountKey.currentState!.validate()) {
+                controller.upsertAccountData();
+              }
             },
             size: 350,
           ),
