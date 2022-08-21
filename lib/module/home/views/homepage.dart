@@ -1,9 +1,10 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos/module/home/controllers/homepage_controller.dart';
 import 'package:sos/util/colours.dart';
 import 'package:sos/widget/promo_section.dart';
-import 'package:sos/widget/submenu_tile.dart';
 
 class Homepage extends StatelessWidget {
   final _controller = Get.put(HomepageController());
@@ -11,70 +12,83 @@ class Homepage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (_, viewportConstraints) {
-      return SingleChildScrollView(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(
-            minHeight: viewportConstraints.maxHeight,
+      return ConstrainedBox(
+        constraints: BoxConstraints(
+          minHeight: viewportConstraints.maxHeight,
+        ),
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            backgroundColor: Colors.white,
+            title: _searchSubmenu,
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _searchSubmenu,
-              _horizontalGridSubmenu,
-              ListView.builder(
-                  physics: const ScrollPhysics(),
-                  itemCount: 2,
-                  shrinkWrap: true,
-                  itemBuilder: (_, index) {
-                    return PromoSection("Promo 17 Agustus");
-                  }),
-            ],
+          body: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                _promoSlider,
+                ListView.builder(
+                    physics: const ScrollPhysics(),
+                    itemCount: 2,
+                    shrinkWrap: true,
+                    itemBuilder: (_, index) {
+                      return PromoSection("Promo 17 Agustus");
+                    }),
+              ],
+            ),
           ),
         ),
       );
     });
   }
 
-  get _searchSubmenu {
-    return Padding(
-      padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 60),
-      child: TextFormField(
-        decoration: const InputDecoration(
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(color: Colors.white, width: 1.0),
-            ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              borderSide: BorderSide(color: Colors.white, width: 1.0),
-            ),
-            prefixIcon: Icon(Icons.search),
-            hintStyle: TextStyle(
-                color: Colours.border,
-                fontWeight: FontWeight.w500,
-                fontSize: 14),
-            hintText: "Cari disini"),
-        onChanged: (value) {},
+  get _promoSlider {
+    return Container(
+      padding: const EdgeInsets.only(top: 30),
+      alignment: Alignment.topCenter,
+      child: Obx(
+        () => CarouselSlider(
+          items: _controller.listBanner.map((data) {
+            return Builder(
+              builder: (context) {
+                return SizedBox(
+                  height: 200,
+                  child: CachedNetworkImage(
+                    imageUrl: data.image,
+                    fit: BoxFit.fill,
+                    progressIndicatorBuilder: (context, url, downloadProgress) => 
+                CircularProgressIndicator(value: downloadProgress.progress),),
+                );
+              },
+            );
+          }).toList(), options: CarouselOptions(
+            scrollDirection: Axis.horizontal,
+            autoPlay: true,
+          )),
       ),
     );
   }
 
-  get _horizontalGridSubmenu {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(20.0, 10.0, 16.0, 8.0),
-      width: double.infinity,
-      height: 180,
-      child: GridView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 54,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10),
-          shrinkWrap: true,
-          itemBuilder: (_, i) {
-            return SubmenuTile("Elektro $i");
-          }),
+  get _searchSubmenu {
+    return TextFormField(
+      decoration: const InputDecoration(
+          fillColor: Colors.white,
+          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            borderSide: BorderSide(color: Colors.white, width: 1.0),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            borderSide: BorderSide(color: Colors.white, width: 1.0),
+          ),
+          prefixIcon: Icon(Icons.search),
+          hintStyle: TextStyle(
+              color: Colours.border,
+              fontWeight: FontWeight.w500,
+              fontSize: 14),
+          hintText: "Cari disini"),
+      onChanged: (value) {},
     );
   }
 }
