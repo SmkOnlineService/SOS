@@ -33,10 +33,14 @@ class AccountPage extends StatelessWidget {
               children: [
                 const Text("Informasi Akun"),
                 InkWell(
-                  onTap: () => Get.toNamed(RouteName.editAccountPage, arguments: {
-                    "fullname": _controller.name.value,
-                    "phoneNumber": _controller.phoneNumber.value
-                  }),
+                  onTap: () => Get.toNamed(RouteName.editAccountPage,
+                      arguments: _controller.name.value == "-" ||
+                              _controller.phoneNumber.value == "-"
+                          ? null
+                          : {
+                              "fullname": _controller.name.value,
+                              "phoneNumber": _controller.phoneNumber.value
+                            }),
                   child: const Text(
                     "Edit",
                     style: TextStyle(color: Colors.blue),
