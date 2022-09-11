@@ -9,6 +9,8 @@ class RouteName {
 
   static String editAccountPage = '/editAccountPage';
 
+  static String searchJasaPage = '/searchJasaPage';
+
   //Auth
   static String signInPage = '/signInPage';
 }

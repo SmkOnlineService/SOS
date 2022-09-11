@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sos/module/home/controllers/homepage_controller.dart';
 import 'package:sos/util/colours.dart';
+import 'package:sos/util/route_name.dart';
 import 'package:sos/widget/promo_section.dart';
 
 class Homepage extends StatelessWidget {
@@ -71,6 +72,8 @@ class Homepage extends StatelessWidget {
 
   get _searchSubmenu {
     return TextFormField(
+      readOnly: true,
+      onTap: () => Get.toNamed(RouteName.searchJasaPage),
       decoration: const InputDecoration(
           fillColor: Colors.white,
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
@@ -88,7 +91,6 @@ class Homepage extends StatelessWidget {
               fontWeight: FontWeight.w500,
               fontSize: 14),
           hintText: "Cari disini"),
-      onChanged: (value) {},
     );
   }
 }

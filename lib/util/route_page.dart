@@ -10,6 +10,8 @@ import 'package:sos/module/home/controllers/homepage_controller.dart';
 import 'package:sos/module/home/views/homepage.dart';
 import 'package:sos/module/inbox/views/inbox_page.dart';
 import 'package:sos/module/payment/views/payment_page.dart';
+import 'package:sos/module/search_jasa/controller/search_service_controller.dart';
+import 'package:sos/module/search_jasa/views/search_service_page.dart';
 import 'package:sos/util/route_name.dart';
 import 'package:sos/module/dashboard/controllers/dashboard_controller.dart';
 
@@ -41,6 +43,10 @@ class RoutePage {
       name: RouteName.editAccountPage, 
       page: () => EditAccountPage(),
       binding: BindingsBuilder(() => Get.lazyPut(() => EditAccountController()))),
+    GetPage(
+      name: RouteName.searchJasaPage,
+      page: () => SearchServicePage(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => SearchServiceController()))),
     
     GetPage(
       name: RouteName.signInPage, 
