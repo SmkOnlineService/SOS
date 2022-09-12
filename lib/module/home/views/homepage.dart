@@ -57,8 +57,7 @@ class Homepage extends StatelessWidget {
                   child: CachedNetworkImage(
                     imageUrl: data.image,
                     fit: BoxFit.fill,
-                    progressIndicatorBuilder: (context, url, downloadProgress) => 
-                CircularProgressIndicator(value: downloadProgress.progress),),
+                    placeholder: (context, _) => const Center(child: CircularProgressIndicator()),),
                 );
               },
             );
