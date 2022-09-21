@@ -11,7 +11,7 @@ class DioInstance {
       )
     );
     _dio.interceptors.add(DioInterceptors());
-    _dio.interceptors.add(alice.getDioInterceptor());
+    // _dio.interceptors.add(alice.getDioInterceptor());
 
     return _dio;
   }

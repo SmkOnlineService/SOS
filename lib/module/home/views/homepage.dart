@@ -72,7 +72,7 @@ class Homepage extends StatelessWidget {
   get _searchSubmenu {
     return TextFormField(
       readOnly: true,
-      onTap: () => Get.toNamed(RouteName.searchJasaPage),
+      onTap: () => Get.toNamed(RouteName.searchJasaPage, arguments: {"address": _controller.userAddress.value}),
       decoration: const InputDecoration(
           fillColor: Colors.white,
           contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 10),

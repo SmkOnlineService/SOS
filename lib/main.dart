@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:alice/alice.dart';
+// import 'package:alice/alice.dart';
 import 'package:encrypted_shared_preferences/encrypted_shared_preferences.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -12,16 +12,16 @@ import 'package:sos/util/notification_helper.dart';
 import 'package:sos/util/route_name.dart';
 import 'package:sos/util/route_page.dart';
 
-final alice = Alice(
-  showNotification: true,
-  showInspectorOnShake: true,
-  darkTheme: false,
-  maxCallsCount: 1000,
-);
+// final alice = Alice(
+//   showNotification: true,
+//   showInspectorOnShake: true,
+//   darkTheme: false,
+//   maxCallsCount: 1000,
+// );
 
 void runHttpInspector(final response) {
-  alice.showNotification;
-  alice.showInspectorOnShake;
+  // alice.showNotification;
+  // alice.showInspectorOnShake;
 }
 
 void main() async {
@@ -79,7 +79,7 @@ class SosApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      navigatorKey: alice.getNavigatorKey(),
+      // navigatorKey: alice.getNavigatorKey(),
       title: 'SMK Online Service',
       theme: ThemeData(
         primarySwatch: Colors.blue,
