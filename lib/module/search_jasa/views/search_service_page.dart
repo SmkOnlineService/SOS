@@ -36,10 +36,17 @@ class SearchServicePage extends GetView<SearchServiceController> {
 
   Widget _searchSubmenu() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text("Lokasi"),
+        const Padding(
+          padding: EdgeInsets.only(left: 16.0),
+          child: Text("Lokasi", style: TextStyle(fontWeight: FontWeight.w700),),
+        ),
         const SizedBox(height: 5),
-        Text(Get.arguments['address']),
+        Padding(
+          padding: const EdgeInsets.only(left: 16.0),
+          child: Text(Get.arguments['address']),
+        ),
         const SizedBox(height: 10),
         Padding(
           padding: const EdgeInsets.all(8.0),
