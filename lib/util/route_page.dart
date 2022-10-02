@@ -9,6 +9,8 @@ import 'package:sos/module/auth/views/sign_in_screen.dart';
 import 'package:sos/module/home/controllers/homepage_controller.dart';
 import 'package:sos/module/home/views/homepage.dart';
 import 'package:sos/module/inbox/views/inbox_page.dart';
+import 'package:sos/module/mechanic_service/controller/servis_mobil_controller.dart';
+import 'package:sos/module/mechanic_service/views/servis_mobil_page.dart';
 import 'package:sos/module/payment/views/payment_page.dart';
 import 'package:sos/module/search_jasa/controller/search_service_controller.dart';
 import 'package:sos/module/search_jasa/views/search_service_page.dart';
@@ -51,5 +53,9 @@ class RoutePage {
     GetPage(
       name: RouteName.signInPage, 
       page: () => SignInScreen()),
+    GetPage(
+      name: RouteName.carServicePage, 
+      page: () => ServisMobilPage(),
+      binding: BindingsBuilder(() => Get.lazyPut(() => ServisMobilController()))),
   ];
 }
