@@ -26,9 +26,11 @@ class SearchServicePage extends GetView<SearchServiceController> {
   Widget _buildListJasa(List<Jasa> list) {
     return Expanded(
         child: ListView.builder(
+          shrinkWrap: true,
             itemCount: list.length,
             itemBuilder: (context, index) {
               return ListTile(
+                onTap: () => Get.toNamed(list[index].route),
                 title: Text(list[index].namaJasa),
               );
             }));
